@@ -167,38 +167,38 @@ const config = {
             footer: {
                 style: 'dark',
                 links: [
+                    // {
+                    //     title: 'Docs',
+                    //     items: [
+                    //         {
+                    //             label: 'Tutorial',
+                    //             to: '/docs/intro',
+                    //         },
+                    //     ],
+                    // },
+                    // {
+                    //     title: 'Community',
+                    //     items: [
+                    //         {
+                    //             label: 'Discord',
+                    //             href: 'https://discordapp.com/invite/docusaurus',
+                    //         },
+                    //         {
+                    //             label: 'Twitter',
+                    //             href: 'https://twitter.com/docusaurus',
+                    //         },
+                    //     ],
+                    // },
                     {
-                        title: 'Docs',
-                        items: [
-                            {
-                                label: 'Tutorial',
-                                to: '/docs/intro',
-                            },
-                        ],
-                    },
-                    {
-                        title: 'Community',
-                        items: [
-                            {
-                                label: 'Discord',
-                                href: 'https://discordapp.com/invite/docusaurus',
-                            },
-                            {
-                                label: 'Twitter',
-                                href: 'https://twitter.com/docusaurus',
-                            },
-                        ],
-                    },
-                    {
-                        title: 'More',
+                        title: 'Content',
                         items: [
                             {
                                 label: 'Blog',
                                 to: '/blog',
                             },
                             {
-                                label: 'GitHub',
-                                href: 'https://github.com/facebook/docusaurus',
+                                label: 'Docs',
+                                href: '/docs/intro',
                             },
                         ],
                     },
@@ -209,10 +209,10 @@ const config = {
                                 html: `<a href="#" class="termly-display-preferences">Consent Preferences</a>`,
                             },
                             {
-                                html: `<a href="#" class="termly-privacy-policy">Privacy Policy</a>`,
+                                html: `<a href="/private_policy.html" class="termly-privacy-policy">Privacy Policy</a>`,
                             },
                             {
-                                html: `<a href="#" class="termly-cookie-policy">Cookie Policy</a>`,
+                                html: `<a href="/cookie_policy.html" class="termly-cookie-policy">Cookie Policy</a>`,
                             },
                             // {
                             //     html: `<a href="#" class="termly-terms-and-conditions">Terms and Conditions</a>`,
@@ -223,7 +223,7 @@ const config = {
                         ],
                     },
                 ],
-                copyright: `Copyright © ${new Date().getFullYear()} NightSquawk Tech. Your nightly read.`,
+                copyright: `Copyright © ${new Date().getFullYear()} NightSquawk Tech - Your Nightly Read`,
             },
             prism: {
                 theme: prismThemes.github,
