@@ -1,4 +1,5 @@
 // Google Tag Manager
+// NAME IN TAG MANAGER: GTM
 (function(w,d,s,l,i){
     w[l]=w[l]||[];
     w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
@@ -11,6 +12,7 @@
 })(window, document, 'script', 'dataLayer', 'GTM-MXF4B9NG');
 
 // Load the Google Analytics script
+// NAME IN TAG MANAGER: GTAG Analytics
 (function() {
     var gtagScript = document.createElement('script');
     gtagScript.async = true;
@@ -28,6 +30,7 @@
 })();
 
 // Google Tag Manager (noscript)
+// NAME IN TAG MANAGER: GTAG noscript
 (function() {
     var noscript = document.createElement('noscript');
     var iframe = document.createElement('iframe');

@@ -39,6 +39,12 @@ const headtags = {
                 src: '/js/gcm.js',
             }
         },
+        {
+            tagName: 'script',
+            attributes: {
+                src: '/js/cfwa.js',
+            }
+        },
     ]
 }
 
