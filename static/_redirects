@@ -1,0 +1,2 @@
+# Redirect all traffic from www to non-www
+https://www.*/* https://:splat 301
