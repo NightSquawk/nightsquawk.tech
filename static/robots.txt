@@ -1,3 +1,48 @@
+#    .__________________________.
+#    | .___________________. |==|
+#    | | ................. | |  |
+#    | | ::[ Dear robot ]: | |  |
+#    | | ::::[ be nice ]:: | |  |
+#    | | ::::::::::::::::: | |  |
+#    | | ::::::::::::::::: | |  |
+#    | | ::::::::::::::::: | |  |
+#    | | ::::::::::::::::: | | ,|
+#    | !___________________! |(c|
+#    !_______________________!__!
+#   /                            \
+#  /  [][][][][][][][][][][][][]  \
+# /  [][][][][][][][][][][][][][]  \
+#(  [][][][][____________][][][][]  )
+# \ ------------------------------ /
+#  \______________________________/
+
+# Termly scanner
+User-agent: TermlyBot
+Allow: /
+
 User-agent: *
 Disallow: /wp-login.php
 Disallow: /wp-admin/
+Disallow: /client-ip-geolocation
+Disallow: /plans/
+Disallow: /constellation
+Disallow: /cdn-cgi/
+Disallow: /login
+Disallow: /qr
+Disallow: /results
+Disallow: /signup
+Disallow: /api/
+Disallow: /administrator/
+Disallow: /cache/
+Disallow: /cli/
+Disallow: /includes/
+Disallow: /installation/
+Disallow: /language/
+Disallow: /libraries/
+Disallow: /logs/
+Disallow: /tmp/
+Disallow: /feed/
+
+Crawl-delay: 5
+
+Sitemap: https://nightsquawk.tech/sitemap.xml
