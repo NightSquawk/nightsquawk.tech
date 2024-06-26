@@ -15,30 +15,35 @@
   justify-content: space-between;
   width: 100%;
   align-items: center;
-  height: 80vh; /* Adjust height as needed */
+  height: calc(100vh - 8rem); /* Subtract the padding (4rem top + 4rem bottom) */
   padding: 4rem;
-  flex-wrap: wrap;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
-.heroContentLeft {
+.heroContentLeft,
+.heroContentRight {
   flex: 1;
   padding: 20px;
   text-align: center;
+  overflow: hidden; /* Ensure content does not overflow */
+  max-height: 100%; /* Ensure content does not exceed the height of the parent */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.heroContentLeft {
   align-self: flex-start; /* Aligns the content to the top */
 }
 
 .heroContentRight {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  padding: 20px;
 }
 
 .blogShowcase {
   text-align: center;
   width: 100%;
+  height: 100%; /* Ensures the blog showcase takes up full height */
 }
 
 .blogImageContainer {
@@ -49,8 +54,9 @@
 }
 
 .blogImage {
-  width: 100%;
-  height: 100%; /* Ensures the image takes up full height */
+  width: 60vw;
+  max-width: 600px;
+  height: auto; /* Ensures the image takes up full height */
   object-fit: cover; /* Maintains the aspect ratio of the image */
 }
 
@@ -59,7 +65,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
+  color: var(--ifm-color-primary-lightest);
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px;
 }
@@ -68,28 +74,45 @@
   margin: 0;
 }
 
+.blogSubtext {
+  margin: 0;
+  color: var(--ifm-color-primary-lightest);
+}
+
 .blogSummary {
   margin-top: 10px;
+  color: var(--ifm-color-primary-dark);
 }
 
 .heroTitle {
   font-size: 3rem;
   margin-bottom: 1rem;
+  color: var(--ifm-color-primary);
 }
 
 .heroSubtitle {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  color: var(--ifm-color-primary-darkest);
 }
 
 .heroDescription {
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
+  color: var(--ifm-color-primary-darker);
 }
 
-@media screen and (max-width: 996px) {
+@media screen and (max-width: 1080px) {
   .heroBanner {
     padding: 2rem;
+    flex-direction: column; /* Stack the content vertically on smaller screens */
+    height: calc(100vh - 4rem); /* Subtract the padding for smaller screens */
+  }
+
+  .heroContentLeft {
+    align-self: center; /* Aligns the content to the top */
+    max-height: 20vh;
+    width: 100%;
   }
 }
 
@@ -97,4 +120,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--ifm-color-primary-light);
 }

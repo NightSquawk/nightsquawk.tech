@@ -19,6 +19,9 @@ function BlogShowcase() {
                 const parsedPosts = data.items.map((item) => ({
                     title: item.title,
                     link: item.url,
+                    date: item.date_modified,
+                    author: item.author.name,
+                    tags: item.tags,
                     summary: item.summary || item.content_text,
                     image: item.image || '/img/brand/LOGO_275x200_CLR-BG.svg', // Fallback image if none found
                 }));
@@ -39,42 +42,54 @@ function BlogShowcase() {
     }, [posts.length]);
 
     if (posts.length === 0) {
-        return <div>No post found</div>;
+        return <div></div>;
     }
 
-    const { title, link, image, summary } = posts[currentPostIndex];
+    const { title, link, date, author, tags, image, summary } = posts[currentPostIndex];
 
     return (
         <div className={styles.blogShowcase}>
             <Link to={link}>
                 <div className={styles.blogImageContainer}>
-                    <img src={image} alt={title} className={styles.blogImage} />
-                    <div className={styles.blogTitleOverlay}>
-                        <h2 className={styles.blogTitle}>{title}</h2>
-                    </div>
+                    <Heading as="h2">{title}</Heading>
+                    <p className={styles.blogSubtext}>{date} - Written by {author}</p>
+                    <img src={image} alt={title} className={styles.blogImage}/>
+                    <p className={styles.blogSummary}>{summary}</p>
                 </div>
             </Link>
-            <p className={styles.blogSummary}>{summary}</p>
         </div>
     );
 }
 
 function HomepageHeader() {
     const { siteConfig } = useDocusaurusContext();
+
     return (
         <div className={styles.heroContainer}>
             <header className={styles.heroBanner}>
                 <div className={styles.heroContentLeft}>
                     <h1 className={styles.heroTitle}>{siteConfig.title}</h1>
                     <p className={styles.heroSubtitle}>{siteConfig.tagline}</p>
+                    <p className={styles.heroDescription}>Welcome to NightSquawk Tech!</p>
+                    <p className={styles.heroDescription}>
+                        We bring you the latest promotions on games and tech items, along with quick guides on technology stacks and programming tutorials.
+                    </p>
+                    <p className={styles.heroDescription}>
+                        Dive into our blog for insightful articles, or explore our documentation for detailed guides.
+                    </p>
+                    <div className={styles.heroButtons}>
+                        <Link className="button button--primary button--lg" to="/blog">
+                            Visit Blog
+                        </Link>
+                        <Link className="button button--secondary button--lg" to="/docs/intro">
+                            View Documentation
+                        </Link>
+                    </div>
                 </div>
                 <div className={styles.heroContentRight}>
                     <BlogShowcase />
                 </div>
             </header>
-            <main>
-                <HomepageFeatures />
-            </main>
         </div>
     );
 }

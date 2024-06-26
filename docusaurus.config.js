@@ -19,6 +19,23 @@ const base = {
     baseUrl: '/',
 }
 
+const headtags = {
+    headTags: [
+        {
+            tagName: 'script',
+            attributes: {
+                src: '/js/gtag.js',
+            }
+        },
+        {
+            tagName: 'script',
+            attributes: {
+                src: '/js/adsense.js',
+            }
+        },
+    ]
+}
+
 const org = {
     // GitHub pages deployment config.
     // If you aren't using GitHub pages, you don't need these.
@@ -32,6 +49,7 @@ const seo = {
     metadata: [
         {name: 'keywords', content: 'tech, blog'},
         {name: 'twitter:card', content: 'summary_large_image'},
+        {name: 'google-adsense-account', content: 'ca-pub-2399094887093765'},
     ],
 
     // OPEN GRAPH TAGS
@@ -186,6 +204,7 @@ const config = {
                 darkTheme: prismThemes.dracula,
             },
         }),
+    ...headtags,
 };
 
 export default config;
