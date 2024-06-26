@@ -33,6 +33,12 @@ const headtags = {
                 src: '/js/adsense.js',
             }
         },
+        {
+            tagName: 'script',
+            attributes: {
+                src: '/js/gcm.js',
+            }
+        },
     ]
 }
 
@@ -193,6 +199,26 @@ const config = {
                             {
                                 label: 'GitHub',
                                 href: 'https://github.com/facebook/docusaurus',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Legal',
+                        items: [
+                            {
+                                html: `<a href="#" class="termly-display-preferences">Consent Preferences</a>`,
+                            },
+                            {
+                                html: `<a href="#" class="termly-privacy-policy">Privacy Policy</a>`,
+                            },
+                            {
+                                html: `<a href="#" class="termly-cookie-policy">Cookie Policy</a>`,
+                            },
+                            // {
+                            //     html: `<a href="#" class="termly-terms-and-conditions">Terms and Conditions</a>`,
+                            // },
+                            {
+                                html: `<a href="https://app.termly.io/notify/29ecafad-d68a-4754-9874-8f3458288d6c">Do Not Sell or Share My Personal information</a>`,
                             },
                         ],
                     },
