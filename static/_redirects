@@ -1,2 +1,2 @@
 # Redirect all traffic from www to non-www
-https://www.nightsquawk.tech/* https://nightsquawk.tech/:splat 301
+www.nightsquawk.tech/* nightsquawk.tech/* 301
