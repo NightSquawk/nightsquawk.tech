@@ -79,6 +79,16 @@ const seo = {
     },
 }
 
+const GoogleTagManager = {
+    gtag: {
+        trackingID: 'G-LH4XY2QF0M',
+        anonymizeIP: false,
+    },
+    googleTagManager: {
+        containerId: 'GTM-MXF4B9NG',
+    },
+}
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     ...base,
@@ -125,6 +135,7 @@ const config = {
                 theme: {
                     customCss: './src/css/custom.css',
                 },
+                ...GoogleTagManager,
             }),
         ],
     ],
