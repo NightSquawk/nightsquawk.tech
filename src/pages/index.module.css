@@ -109,16 +109,26 @@
     height: calc(100vh - 4rem); /* Subtract the padding for smaller screens */
   }
 
-  .heroContentLeft {
+.heroContentLeft {
     align-self: center; /* Aligns the content to the top */
     max-height: 20vh;
     width: 100%;
   }
 }
 
-.buttons {
+.button {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  background-color: var(--ifm-color-primary);
   color: var(--ifm-color-primary-light);
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
 }
