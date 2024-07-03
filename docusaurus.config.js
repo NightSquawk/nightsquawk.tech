@@ -19,6 +19,38 @@ const base = {
     baseUrl: '/',
 }
 
+const navbar = {
+    title: 'NightSquawk Tech',
+    logo: {
+        alt: 'NightSquawk Tech Logo',
+        src: 'img/brand/LOGO_275x200_CLR-BG.svg',
+    },
+    items: [
+        // {
+        //     type: 'docSidebar',
+        //     sidebarId: 'tutorialSidebar',
+        //     position: 'left',
+        //     label: 'Tutorial',
+        // },
+        {
+            type: 'dropdown',
+            sidebarId: 'tutorialSidebar',
+            position: 'left',
+            label: 'Programs',
+            items: [
+                {to: '/docs/category/zoho', label: 'Zoho'},
+                // {to: '/blog', label: 'Blog'},
+            ]
+        },
+        {to: '/blog', label: 'Blog', position: 'left'},
+        {
+            href: 'https://github.com/NightSquawk/nightsquawk.tech',
+            label: 'GitHub',
+            position: 'right',
+        },
+    ],
+}
+
 const headtags = {
     headTags: [
         {
@@ -59,8 +91,14 @@ const seo = {
 
     // META TAGS
     metadata: [
+
+        // GENERAL
         {name: 'keywords', content: 'tech, blog'},
+
+        // TWITTER
         {name: 'twitter:card', content: 'summary_large_image'},
+
+        // GOOGLE ADS
         {name: 'google-adsense-account', content: 'ca-pub-2399094887093765'},
     ],
 
@@ -122,15 +160,15 @@ const config = {
                 docs: {
                     sidebarPath: './sidebars.js',
                     editUrl:
-                        'https://github.com/NightSquawk/nightsquawk.tech',
+                        'https://github.com//NightSquawk/nightsquawk.tech/edit/development/',
                 },
                 blog: {
                     showReadingTime: true,
                     editUrl:
-                        'https://github.com/NightSquawk/nightsquawk.tech',
+                        'https://github.com//NightSquawk/nightsquawk.tech/edit/development/',
                     feedOptions: {
                         type: 'all',
-                        copyright: `Copyright © ${new Date().getFullYear()} Facebook, Inc.`,
+                        copyright: `Copyright © ${new Date().getFullYear()} NightSquawk Tech.`,
                         createFeedItems: async (params) => {
                             const {blogPosts, defaultCreateFeedItems, ...rest} = params;
                             return defaultCreateFeedItems({
@@ -162,34 +200,7 @@ const config = {
                 isCloseable: false,
             },
             image: 'img/brand/HEADER_700x120_CLR-BG.svg',
-            navbar: {
-                title: 'NightSquawk Tech',
-                logo: {
-                    alt: 'NightSquawk Tech Logo',
-                    src: 'img/brand/LOGO_275x200_CLR-BG.svg',
-                },
-                items: [
-                    {
-                        type: 'docSidebar',
-                        sidebarId: 'tutorialSidebar',
-                        position: 'left',
-                        label: 'Tutorial',
-                    },
-                    {
-                        type: 'dropdown',
-                        sidebarId: 'tutorialSidebar',
-                        position: 'left',
-                        label: 'Example Dropdown',
-                        items: [{to: '/blog', label: 'Blog'},{to: '/blog', label: 'Blog'},]
-                    },
-                    {to: '/blog', label: 'Blog', position: 'left'},
-                    {
-                        href: 'https://github.com/NightSquawk',
-                        label: 'GitHub',
-                        position: 'right',
-                    },
-                ],
-            },
+            navbar: navbar,
             footer: {
                 style: 'dark',
                 links: [
