@@ -89,10 +89,19 @@ const GoogleTagManager = {
     },
 }
 
+const MarkdownSettings = {
+    markdown: {
+        mermaid: true,
+    },
+}
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     ...base,
     ...org,
+    ...MarkdownSettings,
+
+    themes: ['@docusaurus/theme-mermaid'],
 
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
