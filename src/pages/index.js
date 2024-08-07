@@ -20,7 +20,7 @@ function BlogShowcase() {
                 console.log('NODE_ENV:', NODE_ENV)
 
                 if (!NODE_ENV || NODE_ENV === 'development') {
-                    blogAPIPath = 'http://beta.nightsquawk.tech/blog/feed.json';
+                    blogAPIPath = 'https://beta.nightsquawk.tech/blog/feed.json';
                 } else {
                     blogAPIPath = 'https://nightsquawk.tech/blog/feed.json';
                 }
