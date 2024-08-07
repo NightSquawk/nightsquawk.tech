@@ -36,9 +36,10 @@ const navbar = {
             type: 'dropdown',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Programs',
+            label: 'Software',
             items: [
                 {to: '/docs/category/zoho', label: 'Zoho'},
+                {to: '/docs/category/CasparCG', label: 'CasparCG'},
                 // {to: '/blog', label: 'Blog'},
             ]
         },
@@ -171,6 +172,20 @@ const config = {
                         copyright: `Copyright © ${new Date().getFullYear()} NightSquawk Tech.`,
                         createFeedItems: async (params) => {
                             const { blogPosts, defaultCreateFeedItems, siteConfig } = params;
+
+                            let siteUrl = 'https://beta.nightsquawk.tech';
+
+                            try {
+                                const envResponse = await fetch('/system/getENV');
+                                const { NODE_ENV } = await envResponse.json();
+                                console.log('NODE_ENV:', NODE_ENV);
+
+                                if (NODE_ENV === 'production') {
+                                    siteUrl = 'https://nightsquawk.tech';
+                                }
+                            } catch {
+                                console.warn('Falling back to development site URL');
+                            }
 
                             // Use the default feed items creation method
                             const feedItems = await defaultCreateFeedItems(params);
