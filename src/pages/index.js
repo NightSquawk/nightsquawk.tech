@@ -13,7 +13,14 @@ function BlogShowcase() {
     useEffect(() => {
         async function fetchBlogPosts() {
             try {
-                const response = await fetch('https://nightsquawk.tech/blog/feed.json'); // Adjust the path as necessary
+                let blogAPIPath = null;
+                if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+                    blogAPIPath = 'http://beta.nightsquawk.tech/blog/feed.json';
+                } else {
+                    blogAPIPath = 'https://nightsquawk.tech/blog/feed.json';
+                }
+
+                const response = await fetch(blogAPIPath); // Adjust the path as necessary
                 const data = await response.json();
 
                 const parsedPosts = data.items.map((item) => ({
