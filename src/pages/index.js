@@ -14,7 +14,7 @@ function BlogShowcase() {
         async function fetchBlogPosts() {
             try {
                 let blogAPIPath = null;
-                const envResponse = await fetch('/api'); // Fetch the NODE_ENV from your Pages Function
+                const envResponse = await fetch('/system/getENV'); // Fetch the NODE_ENV from your Pages Function
                 const { NODE_ENV } = await envResponse.json();
 
                 if (!NODE_ENV || NODE_ENV === 'development') {
