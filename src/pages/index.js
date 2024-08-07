@@ -14,7 +14,10 @@ function BlogShowcase() {
         async function fetchBlogPosts() {
             try {
                 let blogAPIPath = null;
-                if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+                const envResponse = await fetch('/api'); // Fetch the NODE_ENV from your Pages Function
+                const { NODE_ENV } = await envResponse.json();
+
+                if (!NODE_ENV || NODE_ENV === 'development') {
                     blogAPIPath = 'http://beta.nightsquawk.tech/blog/feed.json';
                 } else {
                     blogAPIPath = 'https://nightsquawk.tech/blog/feed.json';
