@@ -170,14 +170,20 @@ const config = {
                         type: 'all',
                         copyright: `Copyright © ${new Date().getFullYear()} NightSquawk Tech.`,
                         createFeedItems: async (params) => {
-                            const {blogPosts, defaultCreateFeedItems, ...rest} = params;
-                            return defaultCreateFeedItems({
-                                // keep only the 10 most recent blog posts in the feed
-                                blogPosts: blogPosts.filter((item, index) => index < 10),
-                                ...rest,
+                            const { blogPosts, defaultCreateFeedItems, ...rest } = params;
+
+                            return await defaultCreateFeedItems({
+                                ...params,
+                                blogPosts: blogPosts
+                                    .filter((item, index) => index < 10) // Keep only the 10 most recent posts
+                                    .map(post => ({
+                                        ...post,
+                                        image: post.metadata.image || '/img/brand/LOGO_275x200_CLR-BG.svg',
+                                    })),
                             });
                         },
                     },
+
                 },
                 theme: {
                     customCss: './src/css/custom.css',
