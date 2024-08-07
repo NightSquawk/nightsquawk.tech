@@ -167,23 +167,32 @@ const config = {
                     editUrl:
                         'https://github.com//NightSquawk/nightsquawk.tech/edit/development/',
                     feedOptions: {
-                        type: 'all',
+                        type: 'json',
                         copyright: `Copyright © ${new Date().getFullYear()} NightSquawk Tech.`,
                         createFeedItems: async (params) => {
-                            const { blogPosts, defaultCreateFeedItems, ...rest } = params;
+                            const { blogPosts, defaultCreateFeedItems, siteConfig } = params;
 
-                            return await defaultCreateFeedItems({
-                                ...params,
-                                blogPosts: blogPosts
-                                    .filter((item, index) => index < 10) // Keep only the 10 most recent posts
-                                    .map(post => ({
-                                        ...post,
-                                        image: post.metadata.image || '/img/brand/LOGO_275x200_CLR-BG.svg',
-                                    })),
+                            // Use the default feed items creation method
+                            const feedItems = await defaultCreateFeedItems(params);
+
+                            // Map over the feed items to append the image URL
+                            return feedItems.map(item => {
+                                // Find the corresponding blog post using the permalink
+                                const correspondingPost = blogPosts.find(post => post.metadata.permalink === item.link.replace(siteConfig.url, ''));
+
+                                // Construct the image URL
+                                const imageUrl = correspondingPost?.metadata.frontMatter.image
+                                    ? `${siteConfig.url}${correspondingPost.metadata.frontMatter.image}`
+                                    : `${siteConfig.url}/img/brand/LOGO_275x200_CLR-BG.svg`;
+
+                                // Return the existing feed item with the image URL appended
+                                return {
+                                    ...item,
+                                    image: imageUrl,  // Add the image URL to the feed item
+                                };
                             });
                         },
                     },
-
                 },
                 theme: {
                     customCss: './src/css/custom.css',
