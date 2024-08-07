@@ -19,6 +19,32 @@ const base = {
     baseUrl: '/',
 }
 
+const footer = {
+    links: [
+        {
+            title: 'Content',
+            items: [
+                {to: '/docs/category/zoho', label: 'Zoho'},
+                {to: '/docs/category/casparcg', label: 'CasparCG'},
+            ]
+        },
+        {
+            title: 'Legal',
+            items: [
+                {html: `<a href="#" class="termly-display-preferences">Consent Preferences</a>`,},
+                {html: `<a href="/private_policy.html" class="termly-privacy-policy">Privacy Policy</a>`,},
+                {html: `<a href="/cookie_policy.html" class="termly-cookie-policy">Cookie Policy</a>`,},
+                // {
+                //     html: `<a href="#" class="termly-terms-and-conditions">Terms and Conditions</a>`,
+                // },
+                {html: `<a href="https://app.termly.io/notify/29ecafad-d68a-4754-9874-8f3458288d6c">Do Not Sell or Share My Personal information</a>`,},
+            ],
+        },
+    ],
+    style: 'dark',
+    copyright: `Copyright © ${new Date().getFullYear()} NightSquawk Tech - Your Nightly Read`,
+}
+
 const navbar = {
     title: 'NightSquawk Tech',
     logo: {
@@ -39,7 +65,7 @@ const navbar = {
             label: 'Software',
             items: [
                 {to: '/docs/category/zoho', label: 'Zoho'},
-                {to: '/docs/category/CasparCG', label: 'CasparCG'},
+                {to: '/docs/category/casparcg', label: 'CasparCG'},
                 // {to: '/blog', label: 'Blog'},
             ]
         },
@@ -231,67 +257,7 @@ const config = {
             },
             image: 'img/brand/HEADER_700x120_CLR-BG.svg',
             navbar: navbar,
-            footer: {
-                style: 'dark',
-                links: [
-                    // {
-                    //     title: 'Docs',
-                    //     items: [
-                    //         {
-                    //             label: 'Tutorial',
-                    //             to: '/docs/intro',
-                    //         },
-                    //     ],
-                    // },
-                    // {
-                    //     title: 'Community',
-                    //     items: [
-                    //         {
-                    //             label: 'Discord',
-                    //             href: 'https://discordapp.com/invite/docusaurus',
-                    //         },
-                    //         {
-                    //             label: 'Twitter',
-                    //             href: 'https://twitter.com/docusaurus',
-                    //         },
-                    //     ],
-                    // },
-                    {
-                        title: 'Content',
-                        items: [
-                            {
-                                label: 'Blog',
-                                to: '/blog',
-                            },
-                            {
-                                label: 'Docs',
-                                href: '/docs/intro',
-                            },
-                        ],
-                    },
-                    {
-                        title: 'Legal',
-                        items: [
-                            {
-                                html: `<a href="#" class="termly-display-preferences">Consent Preferences</a>`,
-                            },
-                            {
-                                html: `<a href="/private_policy.html" class="termly-privacy-policy">Privacy Policy</a>`,
-                            },
-                            {
-                                html: `<a href="/cookie_policy.html" class="termly-cookie-policy">Cookie Policy</a>`,
-                            },
-                            // {
-                            //     html: `<a href="#" class="termly-terms-and-conditions">Terms and Conditions</a>`,
-                            // },
-                            {
-                                html: `<a href="https://app.termly.io/notify/29ecafad-d68a-4754-9874-8f3458288d6c">Do Not Sell or Share My Personal information</a>`,
-                            },
-                        ],
-                    },
-                ],
-                copyright: `Copyright © ${new Date().getFullYear()} NightSquawk Tech - Your Nightly Read`,
-            },
+            footer: footer,
             prism: {
                 theme: prismThemes.github,
                 darkTheme: prismThemes.dracula,

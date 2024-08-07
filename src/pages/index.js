@@ -98,7 +98,7 @@ function HomepageHeader() {
                         <Link className="button button--primary button--lg" to="/blog">
                             Visit Blog
                         </Link>
-                        <Link className="button button--secondary button--lg" to="/docs/intro">
+                        <Link className="button button--secondary button--lg" to="/blog">
                             View Documentation
                         </Link>
                     </div>
