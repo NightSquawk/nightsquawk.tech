@@ -21,3 +21,126 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 Updated: `2024-08-07`
+
+In this guide, we will walk you through the process of installing CasparCG on an Ubuntu Server. CasparCG is a powerful open-source broadcast graphics and video playout server that’s widely used in professional broadcasting environments.
+
+<!--truncate-->
+
+## Prerequisites
+
+Before installing CasparCG, make sure your Ubuntu Server is up to date. You will also need administrative privileges to install the required software.
+
+```bash
+sudo apt-get update && sudo apt-get upgrade -y
+```
+
+## Installing Dependencies
+
+CasparCG requires several dependencies to function correctly. Install the following packages using the apt package manager:
+
+```bash
+sudo apt-get install -y build-essential cmake git libssl-dev libavformat-dev libswscale-dev libavcodec-dev libavutil-dev libasound2-dev libx11-dev
+```
+
+## Downloading and Building CasparCG
+
+To install CasparCG, you’ll need to clone the official CasparCG Server repository and build it from source.
+
+1. ### Clone the CasparCG Server repository
+
+ ```bash
+ git clone https://github.com/CasparCG/server.git
+ cd server
+    ```
+
+2. ### Build CasparCG
+
+You can now build CasparCG using the provided scripts.
+
+ ```bash
+ cmake .
+ make
+    ```
+
+This process might take a while depending on your server’s performance.
+
+3. ### Running CasparCG
+
+After the build process is complete, you can start CasparCG using the following command:
+
+ ```bash
+ ./casparcg
+    ```
+
+CasparCG will start, and you should see output indicating that it’s running. By default, CasparCG listens on port `5250` for commands and on port `8000` for the web-based interface.
+
+## Configuring CasparCG
+
+Once CasparCG is installed and running, you may need to configure it to suit your specific needs. The configuration file `casparcg.config` is located in the root directory of your CasparCG installation.
+
+1. ### Editing the Configuration File
+
+Use your preferred text editor to modify the configuration file:
+
+ ```bash
+ nano casparcg.config
+    ```
+
+You can adjust various settings such as video modes, channels, and logging options.
+
+:::info
+Make sure to back up your configuration file before making changes.
+:::
+
+## Starting CasparCG on Boot
+
+To ensure CasparCG starts automatically when your server reboots, you can create a systemd service.
+
+1. ### Create a systemd service file
+
+ ```bash
+ sudo nano /etc/systemd/system/casparcg.service
+    ```
+
+2. ### Add the following configuration
+
+ ```ini
+ [Unit]
+ Description=CasparCG Server
+ After=network.target
+
+ [Service]
+ ExecStart=/path/to/casparcg
+ Restart=always
+ User=youruser
+ Group=yourgroup
+ Environment=DISPLAY=:0
+
+ [Install]
+ WantedBy=multi-user.target
+    ```
+
+Replace `/path/to/casparcg` with the path to your CasparCG executable, and `youruser` and `yourgroup` with your actual username and group.
+
+3. ### Enable the Service
+
+ ```bash
+ sudo systemctl enable casparcg
+ sudo systemctl start casparcg
+    ```
+
+CasparCG will now start automatically with your server.
+
+## Testing Your Installation
+
+You can verify that CasparCG is running correctly by connecting to its command interface using Telnet:
+
+```bash
+telnet localhost 5250
+```
+
+You should see a response from CasparCG, indicating that it is ready to accept commands.
+
+## Conclusion
+
+Congratulations! You have successfully installed CasparCG on your Ubuntu Server. CasparCG is now ready to be used for broadcast graphics and video playout in your production environment. Be sure to consult the official CasparCG documentation for more advanced configurations and usage tips.
