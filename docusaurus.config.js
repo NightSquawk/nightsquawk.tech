@@ -24,8 +24,9 @@ const footer = {
         {
             title: 'Content',
             items: [
-                {to: '/docs/category/zoho', label: 'Zoho'},
                 {to: '/docs/category/casparcg', label: 'CasparCG'},
+                {to: '/docs/category/syncthing', label: 'Syncthing'},
+                {to: '/docs/category/zoho', label: 'Zoho'},
             ]
         },
         {
@@ -64,8 +65,9 @@ const navbar = {
             position: 'left',
             label: 'Software',
             items: [
-                {to: '/docs/category/zoho', label: 'Zoho'},
                 {to: '/docs/category/casparcg', label: 'CasparCG'},
+                {to: '/docs/category/syncthing', label: 'Syncthing'},
+                {to: '/docs/category/zoho', label: 'Zoho'},
                 // {to: '/blog', label: 'Blog'},
             ]
         },
