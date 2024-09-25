@@ -19,6 +19,33 @@ const base = {
     baseUrl: '/',
 }
 
+const footer = {
+    links: [
+        {
+            title: 'Content',
+            items: [
+                {to: '/docs/category/casparcg', label: 'CasparCG'},
+                {to: '/docs/category/syncthing', label: 'Syncthing'},
+                {to: '/docs/category/zoho', label: 'Zoho'},
+            ]
+        },
+        {
+            title: 'Legal',
+            items: [
+                {html: `<a href="#" class="termly-display-preferences">Consent Preferences</a>`,},
+                {html: `<a href="/private_policy.html" class="termly-privacy-policy">Privacy Policy</a>`,},
+                {html: `<a href="/cookie_policy.html" class="termly-cookie-policy">Cookie Policy</a>`,},
+                // {
+                //     html: `<a href="#" class="termly-terms-and-conditions">Terms and Conditions</a>`,
+                // },
+                {html: `<a href="https://app.termly.io/notify/29ecafad-d68a-4754-9874-8f3458288d6c">Do Not Sell or Share My Personal information</a>`,},
+            ],
+        },
+    ],
+    style: 'dark',
+    copyright: `Copyright © ${new Date().getFullYear()} NightSquawk Tech - Your Nightly Read`,
+}
+
 const navbar = {
     title: 'NightSquawk Tech',
     logo: {
@@ -36,8 +63,10 @@ const navbar = {
             type: 'dropdown',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Programs',
+            label: 'Software',
             items: [
+                {to: '/docs/category/casparcg', label: 'CasparCG'},
+                {to: '/docs/category/syncthing', label: 'Syncthing'},
                 {to: '/docs/category/zoho', label: 'Zoho'},
                 // {to: '/blog', label: 'Blog'},
             ]
@@ -167,14 +196,43 @@ const config = {
                     editUrl:
                         'https://github.com//NightSquawk/nightsquawk.tech/edit/development/',
                     feedOptions: {
-                        type: 'all',
+                        type: 'json',
                         copyright: `Copyright © ${new Date().getFullYear()} NightSquawk Tech.`,
                         createFeedItems: async (params) => {
-                            const {blogPosts, defaultCreateFeedItems, ...rest} = params;
-                            return defaultCreateFeedItems({
-                                // keep only the 10 most recent blog posts in the feed
-                                blogPosts: blogPosts.filter((item, index) => index < 10),
-                                ...rest,
+                            const { blogPosts, defaultCreateFeedItems, siteConfig } = params;
+
+                            let siteUrl = 'https://beta.nightsquawk.tech';
+
+                            try {
+                                const envResponse = await fetch('/system/getENV');
+                                const { NODE_ENV } = await envResponse.json();
+                                console.log('NODE_ENV:', NODE_ENV);
+
+                                if (NODE_ENV === 'production') {
+                                    siteUrl = 'https://nightsquawk.tech';
+                                }
+                            } catch {
+                                console.warn('Falling back to development site URL');
+                            }
+
+                            // Use the default feed items creation method
+                            const feedItems = await defaultCreateFeedItems(params);
+
+                            // Map over the feed items to append the image URL
+                            return feedItems.map(item => {
+                                // Find the corresponding blog post using the permalink
+                                const correspondingPost = blogPosts.find(post => post.metadata.permalink === item.link.replace(siteConfig.url, ''));
+
+                                // Construct the image URL
+                                const imageUrl = correspondingPost?.metadata.frontMatter.image
+                                    ? `${siteConfig.url}${correspondingPost.metadata.frontMatter.image}`
+                                    : `${siteConfig.url}/img/brand/LOGO_275x200_CLR-BG.svg`;
+
+                                // Return the existing feed item with the image URL appended
+                                return {
+                                    ...item,
+                                    image: imageUrl,  // Add the image URL to the feed item
+                                };
                             });
                         },
                     },
@@ -201,67 +259,7 @@ const config = {
             },
             image: 'img/brand/HEADER_700x120_CLR-BG.svg',
             navbar: navbar,
-            footer: {
-                style: 'dark',
-                links: [
-                    // {
-                    //     title: 'Docs',
-                    //     items: [
-                    //         {
-                    //             label: 'Tutorial',
-                    //             to: '/docs/intro',
-                    //         },
-                    //     ],
-                    // },
-                    // {
-                    //     title: 'Community',
-                    //     items: [
-                    //         {
-                    //             label: 'Discord',
-                    //             href: 'https://discordapp.com/invite/docusaurus',
-                    //         },
-                    //         {
-                    //             label: 'Twitter',
-                    //             href: 'https://twitter.com/docusaurus',
-                    //         },
-                    //     ],
-                    // },
-                    {
-                        title: 'Content',
-                        items: [
-                            {
-                                label: 'Blog',
-                                to: '/blog',
-                            },
-                            {
-                                label: 'Docs',
-                                href: '/docs/intro',
-                            },
-                        ],
-                    },
-                    {
-                        title: 'Legal',
-                        items: [
-                            {
-                                html: `<a href="#" class="termly-display-preferences">Consent Preferences</a>`,
-                            },
-                            {
-                                html: `<a href="/private_policy.html" class="termly-privacy-policy">Privacy Policy</a>`,
-                            },
-                            {
-                                html: `<a href="/cookie_policy.html" class="termly-cookie-policy">Cookie Policy</a>`,
-                            },
-                            // {
-                            //     html: `<a href="#" class="termly-terms-and-conditions">Terms and Conditions</a>`,
-                            // },
-                            {
-                                html: `<a href="https://app.termly.io/notify/29ecafad-d68a-4754-9874-8f3458288d6c">Do Not Sell or Share My Personal information</a>`,
-                            },
-                        ],
-                    },
-                ],
-                copyright: `Copyright © ${new Date().getFullYear()} NightSquawk Tech - Your Nightly Read`,
-            },
+            footer: footer,
             prism: {
                 theme: prismThemes.github,
                 darkTheme: prismThemes.dracula,

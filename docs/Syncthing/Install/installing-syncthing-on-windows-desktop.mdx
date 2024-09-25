@@ -1,0 +1,114 @@
+---
+slug: installing-syncthing-on-windows-desktop
+sidebar_label: 'Installing Syncthing on Windows'
+title: 'Installing Syncthing on Windows Desktop'
+image: https://syncthing.net/img/logo-horizontal.svg
+sidebar_position: 1
+last_update:
+    date: 09/24/2024
+    author: Kay
+tags: [syncthing, windows, installation, file sync, open source]
+keywords:
+  - syncthing
+  - windows
+  - installation
+  - file sync
+  - open source
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Updated: `2024-09-24`
+
+In this guide, we will walk you through the process of installing Syncthing on Windows. Syncthing is a free and open-source file synchronization tool that syncs files between devices directly, ensuring your files remain private and secure.
+
+<!--truncate-->
+
+## Prerequisites
+
+Before you install Syncthing, make sure your Windows operating system is up to date. You should also have administrative privileges to install software.
+
+## Step 1: Download Syncthing
+
+:::note
+It is recommended for new users to utilize the available integrations for precompiled assemblies for the ease of use.
+:::
+
+1. Open your web browser and navigate to the [Syncthing Downloads page](https://syncthing.net/downloads/).
+![Syncthing Download Page](/img/d/syncthing/syncthing-download-page.png)
+2. Under the **Integrations** section, find the **Syncthing Windows Setup** and click on the hyperlink. You will be redirected to the GitHub release page.
+![Github Syncthing Release Page](/img/d/syncthing/github-syncthing-download-page.png)
+3. You can directly download the latest version of the Syncthing Windows Setup from the [release page](https://github.com/Bill-Stewart/SyncthingWindowsSetup/releases/).
+
+## Step 2: Install Syncthing
+
+:::warning
+After downloading, you might get a Windows Defender pop-up, warning about a potentially unwanted application (PUA). This is due to the way the program performs its network discovery. Syncthing is a legitimate application, and you can safely ignore this warning.
+
+[Here’s the VirusTotal scan](https://www.virustotal.com/gui/file/6beef08b1b5b225dd5ff070e0f8d1f9aad5263e90f117f3f95547a5a14df3284) for the latest version (v1.27.11).
+:::
+
+1. After downloading, locate the installer file in your **Downloads** folder and double-click it to start the installation.
+![Windows Defender Blocking Syncthing Install](/img/d/syncthing/windows-defender-blocking-syncthing-install.png)
+2. If Windows Defender SmartScreen blocks the file, click **More Info** and select **Run Anyway**.
+![Run Anyway Syncthing Install](/img/d/syncthing/windows-defender-smartscreen-run-anyways-syncthing-install.png)
+
+:::note
+The installer will request administrative privileges; accept the prompt.
+:::
+
+<Tabs>
+    <TabItem value="Page 1" label="Page 1">
+        ### Syncthing Installer Page 1
+        3. Accept the installer information and click **Next**.
+        ![Syncthing Installer Information](/img/d/syncthing/syncthing-installer-page-information.png)
+    </TabItem>
+
+    <TabItem value="Page 2" label="Page 2">
+        ### Syncthing Installer Page 2
+        4. Accept the licensing agreement and click **Next**.
+        ![Syncthing Installer Licensing](/img/d/syncthing/syncthing-installer-page-licensing.png)
+    </TabItem>
+
+    <TabItem value="Page 3" label="Page 3">
+        ### Syncthing Installer Page 3
+
+        Syncthing uses a mesh network with relays to improve discoverability between devices.
+        This is a secure method, but if you prefer, you can disable relays by setting the
+        **Relays Enabled** option to `false` in the configuration settings.
+
+
+        By default, Syncthing only listens on `localhost`, meaning only this device can access the Syncthing web GUI.
+        You can change this setting later from the web GUI, for example, to allow access through Tailscale or other VPNs.
+
+
+        5. Accept the default configuration options unless you have specific preferences.
+        ![Syncthing Installer Configuration](/img/d/syncthing/syncthing-installer-page-configuration.png)
+    </TabItem>
+
+    <TabItem value="Page 4" label="Page 4">
+        ### Syncthing Installer Page 4
+        6. You may see additional configuration options during the installation.
+        ![Syncthing Installer Additional Configuration](/img/d/syncthing/syncthing-installer-page-additional-configuration.png)
+    </TabItem>
+</Tabs>
+
+## Step 3: Running Syncthing
+
+1. Once the installation is complete, you can run Syncthing. If it doesn’t start automatically, search for **Syncthing** in the Start menu and open it.
+2. Syncthing will open a web interface in your default browser, which serves as the control panel.
+
+
+:::note
+If the web interface doesn’t open automatically, you can access it by visiting [http://localhost:8384](http://localhost:8384) in your browser.
+:::
+
+## Conclusion
+
+Syncthing is now installed and configured on your Windows system.
+With its secure, peer-to-peer file syncing, you can easily synchronize data across your devices.
+For advanced features or troubleshooting, check out the [Syncthing documentation](https://docs.syncthing.net/).
+
+[//]: # (For further configuration, check out our guide on [configuring Syncthing on Windows]&#40;/docs/syncthing/configuring-syncthing-on-windows-desktop&#41;.)
+For further configuration, check out our guide `comming soon`.

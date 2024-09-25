@@ -13,17 +13,34 @@ function BlogShowcase() {
     useEffect(() => {
         async function fetchBlogPosts() {
             try {
-                const response = await fetch('https://nightsquawk.tech/blog/feed.json'); // Adjust the path as necessary
+                let blogAPIPath = 'https://beta.nightsquawk.tech/blog/feed.json';
+                try {
+                    const response = await fetch('/system/getENV');
+                    const { NODE_ENV } = await response.json();
+                    console.log('NODE_ENV:', NODE_ENV);
+
+                    if (NODE_ENV === 'production') {
+                        blogAPIPath = 'https://nightsquawk.tech/blog/feed.json';
+                    }
+                } catch {
+                    console.warn('Falling back to development blogAPIPath');
+                }
+
+                const response = await fetch(blogAPIPath);
                 const data = await response.json();
 
                 const parsedPosts = data.items.map((item) => ({
                     title: item.title,
                     link: item.url,
-                    date: item.date_modified,
+                    date: new Date(item.date_modified).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                    }),
                     author: item.author.name,
                     tags: item.tags,
                     summary: item.summary || item.content_text,
-                    image: item.image || '/img/brand/LOGO_275x200_CLR-BG.svg', // Fallback image if none found
+                    image: item.image || '/img/brand/LOGO_275x200_CLR-BG.svg', // Fallback image
                 }));
 
                 setPosts(parsedPosts);
@@ -32,7 +49,7 @@ function BlogShowcase() {
             }
         }
 
-        fetchBlogPosts();
+    fetchBlogPosts();
 
         const interval = setInterval(() => {
             setCurrentPostIndex((prevIndex) => (prevIndex + 1) % posts.length);
@@ -81,7 +98,7 @@ function HomepageHeader() {
                         <Link className="button button--primary button--lg" to="/blog">
                             Visit Blog
                         </Link>
-                        <Link className="button button--secondary button--lg" to="/docs/intro">
+                        <Link className="button button--secondary button--lg" to="/blog">
                             View Documentation
                         </Link>
                     </div>
